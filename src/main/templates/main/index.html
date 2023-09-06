@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Informe Examen</title>
+    <link rel="stylesheet" href="{% static 'css/informe.css' %}" media="all" />
+</head>
+
+<body>
+    <header class="clearfix">
+        <table class="tablah" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="logo"><img src="https://www.innocan.com/mails/gestion/GEXCATMARCA-TRANSP.png" /></td>
+                <td class="cabderecha">Informe de fecha {{ graph.created | date:"M d, Y" }}</td>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <table class="tabla1" cellpadding="0" cellspacing="0">
+            {{ graph.safe_tablanotas }}
+        </table>
+        <br><br>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <img src="http://127.0.0.1:8000/media/{{ graph.id }}/graf1.png" style="width: 100%;" />
+                </td>
+                <td>
+                    <img src="http://127.0.0.1:8000/media/{{ graph.id }}/graf2.png" style="width: 100%;" />
+                </td>
+            </tr>
+        </table>
+
+        <div id="graficas">
+            <img src="http://127.0.0.1:8000/media/{{ graph.id }}/graf3.png" style="width: 100%;" />
+            <img src="http://127.0.0.1:8000/media/{{ graph.id }}/graf4.png" style="width: 100%;" />
+            <img src="http://127.0.0.1:8000/media/{{ graph.id }}/graf5.png" style="width: 100%;" />
+        </div>
+
+        <h2 class="audit">AUDITOR&Iacute;A DE LA CALIDAD DE LAS PREGUNTAS</h2>
+        <table class="tabla2" cellpadding="0" cellspacing="5">
+            {{ graph.safe_tablaaudit }}
+        </table>
+    </main>
+    <div class="pie">
+        <table>
+            <tr>
+                <td>
+                    <a href="/media/{{ graph.id }}/result.pdf" target="_blank"><button class="button"><strong>Descargar
+                                informe PDF</strong></button></a>
+                </td>
+                <td>
+                    <a href="https://www.innocan.com/w5innocan/herramientas-de-analisis-para-preguntas-objetivas/"
+                        target="_blank"><button class="button"><strong>Forma de calcular
+                                gr&aacute;ficas</strong></button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
