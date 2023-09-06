@@ -35,14 +35,13 @@ def create_view(request):
     if not validate_request(request):
         return JsonResponse({'error': "Not Authorized"}, status=401)
 
-
     # Extract file from request
     logger.debug('===== Validating file =====')
     form = FileForm(files=request.FILES)
     valid = form.is_valid()
     if not valid:
         return JsonResponse({'error': form.errors.as_text()}, status=400)
-    
+
     logger.debug('===== Reading file =====')
     file: InMemoryUploadedFile = request.FILES.get('file')
     content = ""
